@@ -1,10 +1,9 @@
-import './InvestmentsTable.css';
-import formatter from '../Formatter.js';
+import classes from './InvestmentsTable.module.css';
+import formatter from '../../Formatter.js';
 
 const InvestmentsTable = ({ data, initialInvestment }) => {
-
   return (
-    <table className="result">
+    <table className={classes.result}>
       <thead>
         <tr>
           <th>Year</th>
