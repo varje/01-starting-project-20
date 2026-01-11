@@ -2,7 +2,6 @@ import './InvestmentsTable.css';
 
 const InvestmentsTable = ({ data }) => {
   if (data === undefined || data.length === 0) {
-    console.log('here');
     return (
       <p style={{ textAlign: 'center' }}>No investment data calculated yet.</p>
     );
