@@ -1,7 +1,8 @@
 import './InvestmentsTable.css';
 import formatter from '../Formatter.js';
 
-const InvestmentsTable = ({ data }) => {
+const InvestmentsTable = ({ data, initialInvestment }) => {
+  console.log(initialInvestment);
   if (data === undefined || data.length === 0) {
     return (
       <p style={{ textAlign: 'center' }}>No investment data calculated yet.</p>
@@ -25,8 +26,18 @@ const InvestmentsTable = ({ data }) => {
             <td>{yearData.year}</td>
             <td>{formatter.format(yearData.savingsEndOfYear)}</td>
             <td>{formatter.format(yearData.yearlyInterest)}</td>
-            <td>{formatter.format(yearData.yearlyInterest)}</td>
-            <td>{formatter.format(yearData.yearlyContribution)}</td>
+            <td>
+              {formatter.format(
+                yearData.savingsEndOfYear -
+                  initialInvestment -
+                  yearData.yearlyContribution * yearData.year
+              )}
+            </td>
+            <td>
+              {formatter.format(
+                initialInvestment + yearData.yearlyContribution * yearData.year
+              )}
+            </td>
           </tr>
         ))}
       </tbody>
