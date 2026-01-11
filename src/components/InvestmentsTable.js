@@ -1,4 +1,5 @@
 import './InvestmentsTable.css';
+import formatter from '../Formatter.js';
 
 const InvestmentsTable = ({ data }) => {
   if (data === undefined || data.length === 0) {
@@ -22,10 +23,10 @@ const InvestmentsTable = ({ data }) => {
         {data.map((yearData) => (
           <tr key={yearData.year}>
             <td>{yearData.year}</td>
-            <td>{yearData.savingsEndOfYear}</td>
-            <td>{yearData.yearlyInterest}</td>
-            <td>{yearData.savingsEndOfYear}</td>
-            <td>{yearData.yearlyContribution}</td>
+            <td>{formatter.format(yearData.savingsEndOfYear)}</td>
+            <td>{formatter.format(yearData.yearlyInterest)}</td>
+            <td>{formatter.format(yearData.yearlyInterest)}</td>
+            <td>{formatter.format(yearData.yearlyContribution)}</td>
           </tr>
         ))}
       </tbody>
