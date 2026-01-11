@@ -2,12 +2,6 @@ import './InvestmentsTable.css';
 import formatter from '../Formatter.js';
 
 const InvestmentsTable = ({ data, initialInvestment }) => {
-  console.log(initialInvestment);
-  if (data === undefined || data.length === 0) {
-    return (
-      <p style={{ textAlign: 'center' }}>No investment data calculated yet.</p>
-    );
-  }
 
   return (
     <table className="result">
