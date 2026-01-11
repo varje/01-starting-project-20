@@ -1,11 +1,12 @@
-const InvestmentsTable = ({ yearlyData }) => {
-  if (yearlyData === undefined || yearlyData.length === 0) {
+const InvestmentsTable = ({ data }) => {
+  if (data === undefined || data.length === 0) {
+    console.log('here');
     return (
       <p style={{ textAlign: 'center' }}>No investment data calculated yet.</p>
     );
   }
 
-  console.log(yearlyData);
+  console.log(data);
   return (
     <table className="result">
       <thead>
@@ -18,13 +19,13 @@ const InvestmentsTable = ({ yearlyData }) => {
         </tr>
       </thead>
       <tbody>
-        {yearlyData.map((yearData) => (
+        {data.map((yearData) => (
           <tr key={yearData.year}>
             <td>{yearData.year}</td>
             <td>{yearData.savingsEndOfYear}</td>
-            <td>INTEREST GAINED IN YEAR</td>
-            <td>TOTAL INTEREST GAINED</td>
-            <td>TOTAL INVESTED CAPITAL</td>
+            <td>{yearData.yearlyInterest}</td>
+            <td>{yearData.savingsEndOfYear}</td>
+            <td>{yearData.yearlyContribution}</td>
           </tr>
         ))}
       </tbody>
