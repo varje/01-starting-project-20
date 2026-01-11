@@ -22,7 +22,7 @@ const CalculatorForm = (props) => {
 
   const resetHandler = () => {
     setUserInput(initialUserInput);
-    props.onCalculate(userInput);
+    props.onCalculate(null);
   };
 
   const submitHandler = (event) => {
