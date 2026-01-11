@@ -1,33 +1,32 @@
 import { useState } from 'react';
 import './CalculatorForm.css';
 
-const CalculatorForm = (props) => {
-  const [enteredCurrentSavings, setEnteredCurrentSavings] = useState('');
-  const [enteredYearlySavings, setEnteredYearlySavings] = useState('');
-  const [enteredExpectedReturn, setEnteredExpectedReturn] = useState('');
-  const [enteredDuration, setEnteredDuration] = useState('');
+const initialUserInput = {
+  'current-savings': 10000,
+  'yearly-contribution': 1200,
+  'expected-return': 7,
+  duration: 10,
+};
 
-  const changeHandler = (input, value) => {//...todo
+const CalculatorForm = (props) => {
+  const [userInput, setUserInput] = useState(initialUserInput);
+
+  const changeHandler = (input, value) => {
+    setUserInput((prevInput) => {
+      return {
+        ...prevInput,
+        [input]: value,
+      };
+    });
   };
 
   const resetHandler = () => {
-    const userInput = {
-      currentSavings: +0,
-      yearlyContribution: +0,
-      expectedReturn: +0,
-      duration: +0,
-    };
+    setUserInput(initialUserInput);
     props.onCalculate(userInput);
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    const userInput = {
-      currentSavings: +enteredCurrentSavings,
-      yearlyContribution: +enteredYearlySavings,
-      expectedReturn: +enteredExpectedReturn,
-      duration: +enteredDuration,
-    };
     props.onCalculate(userInput);
   };
 
@@ -42,6 +41,7 @@ const CalculatorForm = (props) => {
             onChange={(event) =>
               changeHandler('current-savings', event.target.value)
             }
+            value={userInput['current-savings']}
           />
         </p>
         <p>
@@ -52,6 +52,7 @@ const CalculatorForm = (props) => {
             onChange={(event) =>
               changeHandler('yearly-contribution', event.target.value)
             }
+            value={userInput['yearly-contribution']}
           />
         </p>
       </div>
@@ -66,6 +67,7 @@ const CalculatorForm = (props) => {
             onChange={(event) =>
               changeHandler('expected-return', event.target.value)
             }
+            value={userInput['expected-return']}
           />
         </p>
         <p>
@@ -74,6 +76,7 @@ const CalculatorForm = (props) => {
             type="number"
             id="duration"
             onChange={(event) => changeHandler('duration', event.target.value)}
+            value={userInput['duration']}
           />
         </p>
       </div>
