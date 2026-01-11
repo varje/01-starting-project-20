@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './CalculatorForm.css';
 
 const CalculatorForm = (props) => {
   const [enteredCurrentSavings, setEnteredCurrentSavings] = useState('');
@@ -33,12 +34,12 @@ const CalculatorForm = (props) => {
     props.onCalculate(userInput);
   };
 
-//   const resetHandler = () => {
-//     setEnteredCurrentSavings('');
-//     setEnteredYearlySavings('');
-//     setEnteredExpectedReturn('');
-//     setEnteredDuration('');
-//   };
+  //   const resetHandler = () => {
+  //     setEnteredCurrentSavings('');
+  //     setEnteredYearlySavings('');
+  //     setEnteredExpectedReturn('');
+  //     setEnteredDuration('');
+  //   };
 
   return (
     <form className="form" onSubmit={submitHandler}>

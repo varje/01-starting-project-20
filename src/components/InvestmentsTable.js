@@ -1,3 +1,5 @@
+import './InvestmentsTable.css';
+
 const InvestmentsTable = ({ data }) => {
   if (data === undefined || data.length === 0) {
     console.log('here');
@@ -6,7 +8,6 @@ const InvestmentsTable = ({ data }) => {
     );
   }
 
-  console.log(data);
   return (
     <table className="result">
       <thead>
