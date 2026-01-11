@@ -1,24 +1,45 @@
+import { useState } from 'react';
+
 const CalculatorForm = () => {
+  const [enteredCurrentSavings, setEnteredCurrentSavings] = useState('');
+  const [enteredYearlySavings, setEnteredYearlySavings] = useState('');
+  const [enteredExpectedReturn, setEnteredExpectedReturn] = useState('');
+  const [enteredDuration, setEnteredDuration] = useState('');
+
+  function currentSavingsChangeHandler(event) {
+    setEnteredCurrentSavings(event.target.value);
+  }
+
+  function yearlySavingsChangeHandler(event) {
+    setEnteredYearlySavings(event.target.value);
+  }
+
+  function expectedReturnChangeHandler(event) {
+    setEnteredExpectedReturn(event.target.value);
+  }
+
+  function durationChangeHandler(event) {
+    setEnteredDuration(event.target.value);
+  }
+
   const submitHandler = (event) => {
     event.preventDefault();
     const userInput = {
-      currentSavings: 100,
-      yearlyContribution: 200,
-      expectedReturn: 10,
-      duration: 5,
+      currentSavings: +enteredCurrentSavings,
+      yearlyContribution: +enteredYearlySavings,
+      expectedReturn: +enteredExpectedReturn,
+      duration: +enteredDuration,
     };
     calculateHandler(userInput);
   };
 
   const calculateHandler = (userInput) => {
-    // Should be triggered when form is submitted
-    // You might not directly want to bind it to the submit event on the form though...
 
     const yearlyData = []; // per-year results
 
-    let currentSavings = +userInput.currentSavings; // feel free to change the shape of this input object!
-    const yearlyContribution = +userInput.yearlyContribution; // as mentioned: feel free to change the shape...
-    const expectedReturn = +userInput.expectedReturn/ 100;
+    let currentSavings = +userInput.currentSavings;
+    const yearlyContribution = +userInput.yearlyContribution;
+    const expectedReturn = +userInput.expectedReturn / 100;
     const duration = +userInput.duration;
 
     // The below code calculates yearly results (total savings, interest etc)
@@ -37,16 +58,25 @@ const CalculatorForm = () => {
     // do something with yearlyData ...
     console.log(yearlyData);
   };
+  
   return (
     <form className="form" onSubmit={submitHandler}>
       <div className="input-group">
         <p>
           <label htmlFor="current-savings">Current Savings ($)</label>
-          <input type="number" id="current-savings" />
+          <input
+            type="number"
+            id="current-savings"
+            onChange={currentSavingsChangeHandler}
+          />
         </p>
         <p>
           <label htmlFor="yearly-contribution">Yearly Savings ($)</label>
-          <input type="number" id="yearly-contribution" />
+          <input
+            type="number"
+            id="yearly-contribution"
+            onChange={yearlySavingsChangeHandler}
+          />
         </p>
       </div>
       <div className="input-group">
@@ -54,11 +84,15 @@ const CalculatorForm = () => {
           <label htmlFor="expected-return">
             Expected Interest (%, per year)
           </label>
-          <input type="number" id="expected-return" />
+          <input
+            type="number"
+            id="expected-return"
+            onChange={expectedReturnChangeHandler}
+          />
         </p>
         <p>
           <label htmlFor="duration">Investment Duration (years)</label>
-          <input type="number" id="duration" />
+          <input type="number" id="duration" onChange={durationChangeHandler} />
         </p>
       </div>
       <p className="actions">
