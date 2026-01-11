@@ -7,21 +7,8 @@ const CalculatorForm = (props) => {
   const [enteredExpectedReturn, setEnteredExpectedReturn] = useState('');
   const [enteredDuration, setEnteredDuration] = useState('');
 
-  function currentSavingsChangeHandler(event) {
-    setEnteredCurrentSavings(event.target.value);
-  }
-
-  function yearlySavingsChangeHandler(event) {
-    setEnteredYearlySavings(event.target.value);
-  }
-
-  function expectedReturnChangeHandler(event) {
-    setEnteredExpectedReturn(event.target.value);
-  }
-
-  function durationChangeHandler(event) {
-    setEnteredDuration(event.target.value);
-  }
+  const changeHandler = (input, value) => {//...todo
+  };
 
   const resetHandler = () => {
     const userInput = {
@@ -31,7 +18,7 @@ const CalculatorForm = (props) => {
       duration: +0,
     };
     props.onCalculate(userInput);
-  }
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -52,7 +39,9 @@ const CalculatorForm = (props) => {
           <input
             type="number"
             id="current-savings"
-            onChange={currentSavingsChangeHandler}
+            onChange={(event) =>
+              changeHandler('current-savings', event.target.value)
+            }
           />
         </p>
         <p>
@@ -60,7 +49,9 @@ const CalculatorForm = (props) => {
           <input
             type="number"
             id="yearly-contribution"
-            onChange={yearlySavingsChangeHandler}
+            onChange={(event) =>
+              changeHandler('yearly-contribution', event.target.value)
+            }
           />
         </p>
       </div>
@@ -72,12 +63,18 @@ const CalculatorForm = (props) => {
           <input
             type="number"
             id="expected-return"
-            onChange={expectedReturnChangeHandler}
+            onChange={(event) =>
+              changeHandler('expected-return', event.target.value)
+            }
           />
         </p>
         <p>
           <label htmlFor="duration">Investment Duration (years)</label>
-          <input type="number" id="duration" onChange={durationChangeHandler} />
+          <input
+            type="number"
+            id="duration"
+            onChange={(event) => changeHandler('duration', event.target.value)}
+          />
         </p>
       </div>
       <p className="actions">
